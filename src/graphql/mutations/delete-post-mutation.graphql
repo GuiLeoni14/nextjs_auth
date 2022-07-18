@@ -1,0 +1,10 @@
+mutation DELETE_POST($id: ID!) {
+    deletePost(id: $id) {
+        data {
+            id
+            attributes {
+                ...post
+            }
+        }
+    }
+}
