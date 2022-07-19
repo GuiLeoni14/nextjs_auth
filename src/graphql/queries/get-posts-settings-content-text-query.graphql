@@ -1,4 +1,4 @@
-query GET_POSTS_AND_SETTINGS_AND_CONTENT_TEXT(
+query GetPostAndSettingsAndContextText(
     $categorySlug: StringFilterInput
     $postSlug: StringFilterInput
     $postSearch: StringFilterInput

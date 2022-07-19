@@ -1,6 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { TextInput, TextInputProps } from '.';
-import { AlternateEmail } from '@styled-icons/material-outlined/AlternateEmail';
 
 export default {
     title: 'TextInput',
@@ -26,7 +25,7 @@ export default {
     ],
     argTypes: {
         icon: {
-            type: null,
+            type: undefined,
         },
         value: {
             type: {
@@ -61,7 +60,6 @@ export const OnError: Story<TextInputProps> = (args) => {
 OnError.args = {
     errorMessage: 'Something went wrong, Sorry!',
     value: 'Something you typed',
-    icon: <AlternateEmail />,
 };
 
 export const WithText: Story<TextInputProps> = (args) => {
@@ -86,7 +84,6 @@ export const WithIcon: Story<TextInputProps> = (args) => {
 
 WithIcon.args = {
     value: 'Something you typed',
-    icon: <AlternateEmail />,
 };
 
 export const Disabled: Story<TextInputProps> = (args) => {
@@ -99,7 +96,6 @@ export const Disabled: Story<TextInputProps> = (args) => {
 
 Disabled.args = {
     value: 'Something you typed',
-    icon: <AlternateEmail />,
     disabled: true,
 };
 
@@ -113,6 +109,5 @@ export const TextArea: Story<TextInputProps> = (args) => {
 
 TextArea.args = {
     value: 'Something you typed',
-    icon: <AlternateEmail />,
     as: 'textarea',
 };

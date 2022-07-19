@@ -1429,6 +1429,20 @@ export type PaginationFragment = {
     pageCount: number;
 };
 
+export type AuthenticateUserMutationVariables = Exact<{
+    identifier: Scalars['String'];
+    password: Scalars['String'];
+}>;
+
+export type AuthenticateUserMutation = {
+    __typename?: 'Mutation';
+    login: {
+        __typename?: 'UsersPermissionsLoginPayload';
+        jwt?: string | null;
+        user: { __typename?: 'UsersPermissionsMe'; id: string; email?: string | null; username: string };
+    };
+};
+
 export type Create_Post_1MutationVariables = Exact<{
     id: Scalars['ID'];
     title?: InputMaybe<Scalars['String']>;
@@ -1692,7 +1706,7 @@ export type Update_PostMutation = {
     } | null;
 };
 
-export type Get_Posts_And_Settings_And_Content_TextQueryVariables = Exact<{
+export type GetPostAndSettingsAndContextTextQueryVariables = Exact<{
     categorySlug?: InputMaybe<StringFilterInput>;
     postSlug?: InputMaybe<StringFilterInput>;
     postSearch?: InputMaybe<StringFilterInput>;
@@ -1705,7 +1719,7 @@ export type Get_Posts_And_Settings_And_Content_TextQueryVariables = Exact<{
     page?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type Get_Posts_And_Settings_And_Content_TextQuery = {
+export type GetPostAndSettingsAndContextTextQuery = {
     __typename?: 'Query';
     setting?: {
         __typename?: 'SettingEntityResponse';
@@ -1986,6 +2000,56 @@ export const PaginationFragmentDoc = gql`
         pageCount
     }
 `;
+export const AuthenticateUserDocument = gql`
+    mutation AuthenticateUser($identifier: String!, $password: String!) {
+        login(input: { identifier: $identifier, password: $password }) {
+            jwt
+            user {
+                id
+                email
+                username
+            }
+        }
+    }
+`;
+export type AuthenticateUserMutationFn = Apollo.MutationFunction<
+    AuthenticateUserMutation,
+    AuthenticateUserMutationVariables
+>;
+
+/**
+ * __useAuthenticateUserMutation__
+ *
+ * To run a mutation, you first call `useAuthenticateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAuthenticateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [authenticateUserMutation, { data, loading, error }] = useAuthenticateUserMutation({
+ *   variables: {
+ *      identifier: // value for 'identifier'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useAuthenticateUserMutation(
+    baseOptions?: Apollo.MutationHookOptions<AuthenticateUserMutation, AuthenticateUserMutationVariables>,
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useMutation<AuthenticateUserMutation, AuthenticateUserMutationVariables>(
+        AuthenticateUserDocument,
+        options,
+    );
+}
+export type AuthenticateUserMutationHookResult = ReturnType<typeof useAuthenticateUserMutation>;
+export type AuthenticateUserMutationResult = Apollo.MutationResult<AuthenticateUserMutation>;
+export type AuthenticateUserMutationOptions = Apollo.BaseMutationOptions<
+    AuthenticateUserMutation,
+    AuthenticateUserMutationVariables
+>;
 export const Create_Post_1Document = gql`
     mutation CREATE_POST_1($id: ID!, $title: String, $content: String, $except: String, $user: ID) {
         createPost(data: { title: $title, excerpt: $except, content: $content, user: $user }) {
@@ -2120,8 +2184,8 @@ export function useUpdate_PostMutation(
 export type Update_PostMutationHookResult = ReturnType<typeof useUpdate_PostMutation>;
 export type Update_PostMutationResult = Apollo.MutationResult<Update_PostMutation>;
 export type Update_PostMutationOptions = Apollo.BaseMutationOptions<Update_PostMutation, Update_PostMutationVariables>;
-export const Get_Posts_And_Settings_And_Content_TextDocument = gql`
-    query GET_POSTS_AND_SETTINGS_AND_CONTENT_TEXT(
+export const GetPostAndSettingsAndContextTextDocument = gql`
+    query GetPostAndSettingsAndContextText(
         $categorySlug: StringFilterInput
         $postSlug: StringFilterInput
         $postSearch: StringFilterInput
@@ -2185,16 +2249,16 @@ export const Get_Posts_And_Settings_And_Content_TextDocument = gql`
 `;
 
 /**
- * __useGet_Posts_And_Settings_And_Content_TextQuery__
+ * __useGetPostAndSettingsAndContextTextQuery__
  *
- * To run a query within a React component, call `useGet_Posts_And_Settings_And_Content_TextQuery` and pass it any options that fit your needs.
- * When your component renders, `useGet_Posts_And_Settings_And_Content_TextQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetPostAndSettingsAndContextTextQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostAndSettingsAndContextTextQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGet_Posts_And_Settings_And_Content_TextQuery({
+ * const { data, loading, error } = useGetPostAndSettingsAndContextTextQuery({
  *   variables: {
  *      categorySlug: // value for 'categorySlug'
  *      postSlug: // value for 'postSlug'
@@ -2209,37 +2273,37 @@ export const Get_Posts_And_Settings_And_Content_TextDocument = gql`
  *   },
  * });
  */
-export function useGet_Posts_And_Settings_And_Content_TextQuery(
+export function useGetPostAndSettingsAndContextTextQuery(
     baseOptions?: Apollo.QueryHookOptions<
-        Get_Posts_And_Settings_And_Content_TextQuery,
-        Get_Posts_And_Settings_And_Content_TextQueryVariables
+        GetPostAndSettingsAndContextTextQuery,
+        GetPostAndSettingsAndContextTextQueryVariables
     >,
 ) {
     const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useQuery<
-        Get_Posts_And_Settings_And_Content_TextQuery,
-        Get_Posts_And_Settings_And_Content_TextQueryVariables
-    >(Get_Posts_And_Settings_And_Content_TextDocument, options);
+    return Apollo.useQuery<GetPostAndSettingsAndContextTextQuery, GetPostAndSettingsAndContextTextQueryVariables>(
+        GetPostAndSettingsAndContextTextDocument,
+        options,
+    );
 }
-export function useGet_Posts_And_Settings_And_Content_TextLazyQuery(
+export function useGetPostAndSettingsAndContextTextLazyQuery(
     baseOptions?: Apollo.LazyQueryHookOptions<
-        Get_Posts_And_Settings_And_Content_TextQuery,
-        Get_Posts_And_Settings_And_Content_TextQueryVariables
+        GetPostAndSettingsAndContextTextQuery,
+        GetPostAndSettingsAndContextTextQueryVariables
     >,
 ) {
     const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useLazyQuery<
-        Get_Posts_And_Settings_And_Content_TextQuery,
-        Get_Posts_And_Settings_And_Content_TextQueryVariables
-    >(Get_Posts_And_Settings_And_Content_TextDocument, options);
+    return Apollo.useLazyQuery<GetPostAndSettingsAndContextTextQuery, GetPostAndSettingsAndContextTextQueryVariables>(
+        GetPostAndSettingsAndContextTextDocument,
+        options,
+    );
 }
-export type Get_Posts_And_Settings_And_Content_TextQueryHookResult = ReturnType<
-    typeof useGet_Posts_And_Settings_And_Content_TextQuery
+export type GetPostAndSettingsAndContextTextQueryHookResult = ReturnType<
+    typeof useGetPostAndSettingsAndContextTextQuery
 >;
-export type Get_Posts_And_Settings_And_Content_TextLazyQueryHookResult = ReturnType<
-    typeof useGet_Posts_And_Settings_And_Content_TextLazyQuery
+export type GetPostAndSettingsAndContextTextLazyQueryHookResult = ReturnType<
+    typeof useGetPostAndSettingsAndContextTextLazyQuery
 >;
-export type Get_Posts_And_Settings_And_Content_TextQueryResult = Apollo.QueryResult<
-    Get_Posts_And_Settings_And_Content_TextQuery,
-    Get_Posts_And_Settings_And_Content_TextQueryVariables
+export type GetPostAndSettingsAndContextTextQueryResult = Apollo.QueryResult<
+    GetPostAndSettingsAndContextTextQuery,
+    GetPostAndSettingsAndContextTextQueryVariables
 >;

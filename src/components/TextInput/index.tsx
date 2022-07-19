@@ -11,7 +11,7 @@ export type TextInputProps = {
     value?: string;
     icon?: React.ReactNode;
     as?: 'input' | 'textarea';
-    reference?: HTMLInputElement;
+    reference?: HTMLInputElement | null;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const TextInput = ({
@@ -29,10 +29,11 @@ export const TextInput = ({
     const inputRef = useRef(reference);
 
     const handleChange = () => {
-        const value = inputRef.current.value;
-
-        if (onInputChange) {
-            onInputChange(value);
+        if (inputRef.current) {
+            const value = inputRef.current.value;
+            if (onInputChange) {
+                onInputChange(value);
+            }
         }
     };
 
