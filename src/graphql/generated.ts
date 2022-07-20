@@ -22,17 +22,9 @@ export type Autor = {
     __typename?: 'Autor';
     createdAt?: Maybe<Scalars['DateTime']>;
     name: Scalars['String'];
-    posts?: Maybe<PostRelationResponseCollection>;
     publishedAt?: Maybe<Scalars['DateTime']>;
     slug: Scalars['String'];
     updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type AutorPostsArgs = {
-    filters?: InputMaybe<PostFiltersInput>;
-    pagination?: InputMaybe<PaginationArg>;
-    publicationState?: InputMaybe<PublicationState>;
-    sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type AutorEntity = {
@@ -59,7 +51,6 @@ export type AutorFiltersInput = {
     name?: InputMaybe<StringFilterInput>;
     not?: InputMaybe<AutorFiltersInput>;
     or?: InputMaybe<Array<InputMaybe<AutorFiltersInput>>>;
-    posts?: InputMaybe<PostFiltersInput>;
     publishedAt?: InputMaybe<DateTimeFilterInput>;
     slug?: InputMaybe<StringFilterInput>;
     updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -67,7 +58,6 @@ export type AutorFiltersInput = {
 
 export type AutorInput = {
     name?: InputMaybe<Scalars['String']>;
-    posts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     publishedAt?: InputMaybe<Scalars['DateTime']>;
     slug?: InputMaybe<Scalars['String']>;
 };
@@ -100,17 +90,9 @@ export type Category = {
     cover: UploadFileEntityResponse;
     createdAt?: Maybe<Scalars['DateTime']>;
     name: Scalars['String'];
-    posts?: Maybe<PostRelationResponseCollection>;
     publishedAt?: Maybe<Scalars['DateTime']>;
     slug: Scalars['String'];
     updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type CategoryPostsArgs = {
-    filters?: InputMaybe<PostFiltersInput>;
-    pagination?: InputMaybe<PaginationArg>;
-    publicationState?: InputMaybe<PublicationState>;
-    sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type CategoryEntity = {
@@ -137,7 +119,6 @@ export type CategoryFiltersInput = {
     name?: InputMaybe<StringFilterInput>;
     not?: InputMaybe<CategoryFiltersInput>;
     or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
-    posts?: InputMaybe<PostFiltersInput>;
     publishedAt?: InputMaybe<DateTimeFilterInput>;
     slug?: InputMaybe<StringFilterInput>;
     updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -146,14 +127,8 @@ export type CategoryFiltersInput = {
 export type CategoryInput = {
     cover?: InputMaybe<Scalars['ID']>;
     name?: InputMaybe<Scalars['String']>;
-    posts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     publishedAt?: InputMaybe<Scalars['DateTime']>;
     slug?: InputMaybe<Scalars['String']>;
-};
-
-export type CategoryRelationResponseCollection = {
-    __typename?: 'CategoryRelationResponseCollection';
-    data: Array<CategoryEntity>;
 };
 
 export type ComponentFooterAuthor = {
@@ -603,33 +578,12 @@ export type PaginationArg = {
 
 export type Post = {
     __typename?: 'Post';
-    allowComments: Scalars['Boolean'];
-    autor?: Maybe<AutorEntityResponse>;
-    categories?: Maybe<CategoryRelationResponseCollection>;
     content: Scalars['String'];
-    cover: UploadFileEntityResponse;
     createdAt?: Maybe<Scalars['DateTime']>;
-    excerpt: Scalars['String'];
     publishedAt?: Maybe<Scalars['DateTime']>;
-    slug: Scalars['String'];
-    tags?: Maybe<TagRelationResponseCollection>;
     title: Scalars['String'];
     updatedAt?: Maybe<Scalars['DateTime']>;
     user?: Maybe<UsersPermissionsUserEntityResponse>;
-};
-
-export type PostCategoriesArgs = {
-    filters?: InputMaybe<CategoryFiltersInput>;
-    pagination?: InputMaybe<PaginationArg>;
-    publicationState?: InputMaybe<PublicationState>;
-    sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type PostTagsArgs = {
-    filters?: InputMaybe<TagFiltersInput>;
-    pagination?: InputMaybe<PaginationArg>;
-    publicationState?: InputMaybe<PublicationState>;
-    sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type PostEntity = {
@@ -650,34 +604,21 @@ export type PostEntityResponseCollection = {
 };
 
 export type PostFiltersInput = {
-    allowComments?: InputMaybe<BooleanFilterInput>;
     and?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
-    autor?: InputMaybe<AutorFiltersInput>;
-    categories?: InputMaybe<CategoryFiltersInput>;
     content?: InputMaybe<StringFilterInput>;
     createdAt?: InputMaybe<DateTimeFilterInput>;
-    excerpt?: InputMaybe<StringFilterInput>;
     id?: InputMaybe<IdFilterInput>;
     not?: InputMaybe<PostFiltersInput>;
     or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
     publishedAt?: InputMaybe<DateTimeFilterInput>;
-    slug?: InputMaybe<StringFilterInput>;
-    tags?: InputMaybe<TagFiltersInput>;
     title?: InputMaybe<StringFilterInput>;
     updatedAt?: InputMaybe<DateTimeFilterInput>;
     user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type PostInput = {
-    allowComments?: InputMaybe<Scalars['Boolean']>;
-    autor?: InputMaybe<Scalars['ID']>;
-    categories?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     content?: InputMaybe<Scalars['String']>;
-    cover?: InputMaybe<Scalars['ID']>;
-    excerpt?: InputMaybe<Scalars['String']>;
     publishedAt?: InputMaybe<Scalars['DateTime']>;
-    slug?: InputMaybe<Scalars['String']>;
-    tags?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     title?: InputMaybe<Scalars['String']>;
     user?: InputMaybe<Scalars['ID']>;
 };
@@ -877,17 +818,9 @@ export type Tag = {
     __typename?: 'Tag';
     createdAt?: Maybe<Scalars['DateTime']>;
     name: Scalars['String'];
-    posts?: Maybe<PostRelationResponseCollection>;
     publishedAt?: Maybe<Scalars['DateTime']>;
     slug: Scalars['String'];
     updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type TagPostsArgs = {
-    filters?: InputMaybe<PostFiltersInput>;
-    pagination?: InputMaybe<PaginationArg>;
-    publicationState?: InputMaybe<PublicationState>;
-    sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type TagEntity = {
@@ -914,7 +847,6 @@ export type TagFiltersInput = {
     name?: InputMaybe<StringFilterInput>;
     not?: InputMaybe<TagFiltersInput>;
     or?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>;
-    posts?: InputMaybe<PostFiltersInput>;
     publishedAt?: InputMaybe<DateTimeFilterInput>;
     slug?: InputMaybe<StringFilterInput>;
     updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -922,14 +854,8 @@ export type TagFiltersInput = {
 
 export type TagInput = {
     name?: InputMaybe<Scalars['String']>;
-    posts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     publishedAt?: InputMaybe<Scalars['DateTime']>;
     slug?: InputMaybe<Scalars['String']>;
-};
-
-export type TagRelationResponseCollection = {
-    __typename?: 'TagRelationResponseCollection';
-    data: Array<TagEntity>;
 };
 
 export type UploadFile = {
@@ -1234,18 +1160,6 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type ImageFragment = { __typename?: 'UploadFile'; alternativeText?: string | null; url: string };
 
-export type CoverFragment = {
-    __typename?: 'Post';
-    cover: {
-        __typename?: 'UploadFileEntityResponse';
-        data?: {
-            __typename?: 'UploadFileEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-        } | null;
-    };
-};
-
 export type CoverCategoryFragment = {
     __typename?: 'Category';
     cover: {
@@ -1276,54 +1190,6 @@ export type CategoryFragment = {
     };
 };
 
-export type TagsFragment = {
-    __typename?: 'Post';
-    tags?: {
-        __typename?: 'TagRelationResponseCollection';
-        data: Array<{
-            __typename?: 'TagEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-        }>;
-    } | null;
-};
-
-export type AuthorPostFragment = {
-    __typename?: 'Post';
-    autor?: {
-        __typename?: 'AutorEntityResponse';
-        data?: {
-            __typename?: 'AutorEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
-        } | null;
-    } | null;
-};
-
-export type CategoriesFragment = {
-    __typename?: 'Post';
-    categories?: {
-        __typename?: 'CategoryRelationResponseCollection';
-        data: Array<{
-            __typename?: 'CategoryEntity';
-            id?: string | null;
-            attributes?: {
-                __typename?: 'Category';
-                name: string;
-                slug: string;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-            } | null;
-        }>;
-    } | null;
-};
-
 export type MenuLinkFragment = {
     __typename?: 'ComponentMenuMenuLink';
     id: string;
@@ -1334,11 +1200,8 @@ export type MenuLinkFragment = {
 
 export type PostFragment = {
     __typename?: 'Post';
-    slug: string;
     title: string;
-    excerpt: string;
     content: string;
-    allowComments: boolean;
     createdAt?: any | null;
     user?: {
         __typename?: 'UsersPermissionsUserEntityResponse';
@@ -1351,50 +1214,6 @@ export type PostFragment = {
                 confirmed?: boolean | null;
                 username: string;
             } | null;
-        } | null;
-    } | null;
-    cover: {
-        __typename?: 'UploadFileEntityResponse';
-        data?: {
-            __typename?: 'UploadFileEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-        } | null;
-    };
-    categories?: {
-        __typename?: 'CategoryRelationResponseCollection';
-        data: Array<{
-            __typename?: 'CategoryEntity';
-            id?: string | null;
-            attributes?: {
-                __typename?: 'Category';
-                name: string;
-                slug: string;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-            } | null;
-        }>;
-    } | null;
-    tags?: {
-        __typename?: 'TagRelationResponseCollection';
-        data: Array<{
-            __typename?: 'TagEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-        }>;
-    } | null;
-    autor?: {
-        __typename?: 'AutorEntityResponse';
-        data?: {
-            __typename?: 'AutorEntity';
-            id?: string | null;
-            attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
         } | null;
     } | null;
 };
@@ -1447,7 +1266,6 @@ export type Create_Post_1MutationVariables = Exact<{
     id: Scalars['ID'];
     title?: InputMaybe<Scalars['String']>;
     content?: InputMaybe<Scalars['String']>;
-    except?: InputMaybe<Scalars['String']>;
     user?: InputMaybe<Scalars['ID']>;
 }>;
 
@@ -1460,11 +1278,8 @@ export type Create_Post_1Mutation = {
             id?: string | null;
             attributes?: {
                 __typename?: 'Post';
-                slug: string;
                 title: string;
-                excerpt: string;
                 content: string;
-                allowComments: boolean;
                 createdAt?: any | null;
                 user?: {
                     __typename?: 'UsersPermissionsUserEntityResponse';
@@ -1477,54 +1292,6 @@ export type Create_Post_1Mutation = {
                             confirmed?: boolean | null;
                             username: string;
                         } | null;
-                    } | null;
-                } | null;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-                categories?: {
-                    __typename?: 'CategoryRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'CategoryEntity';
-                        id?: string | null;
-                        attributes?: {
-                            __typename?: 'Category';
-                            name: string;
-                            slug: string;
-                            cover: {
-                                __typename?: 'UploadFileEntityResponse';
-                                data?: {
-                                    __typename?: 'UploadFileEntity';
-                                    id?: string | null;
-                                    attributes?: {
-                                        __typename?: 'UploadFile';
-                                        alternativeText?: string | null;
-                                        url: string;
-                                    } | null;
-                                } | null;
-                            };
-                        } | null;
-                    }>;
-                } | null;
-                tags?: {
-                    __typename?: 'TagRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'TagEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-                    }>;
-                } | null;
-                autor?: {
-                    __typename?: 'AutorEntityResponse';
-                    data?: {
-                        __typename?: 'AutorEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
                     } | null;
                 } | null;
             } | null;
@@ -1545,11 +1312,8 @@ export type Delete_PostMutation = {
             id?: string | null;
             attributes?: {
                 __typename?: 'Post';
-                slug: string;
                 title: string;
-                excerpt: string;
                 content: string;
-                allowComments: boolean;
                 createdAt?: any | null;
                 user?: {
                     __typename?: 'UsersPermissionsUserEntityResponse';
@@ -1564,54 +1328,6 @@ export type Delete_PostMutation = {
                         } | null;
                     } | null;
                 } | null;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-                categories?: {
-                    __typename?: 'CategoryRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'CategoryEntity';
-                        id?: string | null;
-                        attributes?: {
-                            __typename?: 'Category';
-                            name: string;
-                            slug: string;
-                            cover: {
-                                __typename?: 'UploadFileEntityResponse';
-                                data?: {
-                                    __typename?: 'UploadFileEntity';
-                                    id?: string | null;
-                                    attributes?: {
-                                        __typename?: 'UploadFile';
-                                        alternativeText?: string | null;
-                                        url: string;
-                                    } | null;
-                                } | null;
-                            };
-                        } | null;
-                    }>;
-                } | null;
-                tags?: {
-                    __typename?: 'TagRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'TagEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-                    }>;
-                } | null;
-                autor?: {
-                    __typename?: 'AutorEntityResponse';
-                    data?: {
-                        __typename?: 'AutorEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
-                    } | null;
-                } | null;
             } | null;
         } | null;
     } | null;
@@ -1621,7 +1337,6 @@ export type Update_PostMutationVariables = Exact<{
     id: Scalars['ID'];
     title?: InputMaybe<Scalars['String']>;
     content?: InputMaybe<Scalars['String']>;
-    except?: InputMaybe<Scalars['String']>;
     user?: InputMaybe<Scalars['ID']>;
 }>;
 
@@ -1634,11 +1349,8 @@ export type Update_PostMutation = {
             id?: string | null;
             attributes?: {
                 __typename?: 'Post';
-                slug: string;
                 title: string;
-                excerpt: string;
                 content: string;
-                allowComments: boolean;
                 createdAt?: any | null;
                 user?: {
                     __typename?: 'UsersPermissionsUserEntityResponse';
@@ -1651,54 +1363,6 @@ export type Update_PostMutation = {
                             confirmed?: boolean | null;
                             username: string;
                         } | null;
-                    } | null;
-                } | null;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-                categories?: {
-                    __typename?: 'CategoryRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'CategoryEntity';
-                        id?: string | null;
-                        attributes?: {
-                            __typename?: 'Category';
-                            name: string;
-                            slug: string;
-                            cover: {
-                                __typename?: 'UploadFileEntityResponse';
-                                data?: {
-                                    __typename?: 'UploadFileEntity';
-                                    id?: string | null;
-                                    attributes?: {
-                                        __typename?: 'UploadFile';
-                                        alternativeText?: string | null;
-                                        url: string;
-                                    } | null;
-                                } | null;
-                            };
-                        } | null;
-                    }>;
-                } | null;
-                tags?: {
-                    __typename?: 'TagRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'TagEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-                    }>;
-                } | null;
-                autor?: {
-                    __typename?: 'AutorEntityResponse';
-                    data?: {
-                        __typename?: 'AutorEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
                     } | null;
                 } | null;
             } | null;
@@ -1706,12 +1370,8 @@ export type Update_PostMutation = {
     } | null;
 };
 
-export type GetPostAndSettingsAndContextTextQueryVariables = Exact<{
-    categorySlug?: InputMaybe<StringFilterInput>;
-    postSlug?: InputMaybe<StringFilterInput>;
+export type GetPostsQueryVariables = Exact<{
     postSearch?: InputMaybe<StringFilterInput>;
-    authorSlug?: InputMaybe<StringFilterInput>;
-    tagSlug?: InputMaybe<StringFilterInput>;
     sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
     start?: InputMaybe<Scalars['Int']>;
     limit?: InputMaybe<Scalars['Int']>;
@@ -1719,36 +1379,8 @@ export type GetPostAndSettingsAndContextTextQueryVariables = Exact<{
     page?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type GetPostAndSettingsAndContextTextQuery = {
+export type GetPostsQuery = {
     __typename?: 'Query';
-    setting?: {
-        __typename?: 'SettingEntityResponse';
-        data?: {
-            __typename?: 'SettingEntity';
-            id?: string | null;
-            attributes?: {
-                __typename?: 'Setting';
-                blogName: string;
-                blogDescription: string;
-                text: string;
-                blogLogo: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-                menuLink?: Array<{
-                    __typename?: 'ComponentMenuMenuLink';
-                    id: string;
-                    link: string;
-                    text: string;
-                    newTab: boolean;
-                } | null> | null;
-            } | null;
-        } | null;
-    } | null;
     posts?: {
         __typename?: 'PostEntityResponseCollection';
         data: Array<{
@@ -1756,11 +1388,8 @@ export type GetPostAndSettingsAndContextTextQuery = {
             id?: string | null;
             attributes?: {
                 __typename?: 'Post';
-                slug: string;
                 title: string;
-                excerpt: string;
                 content: string;
-                allowComments: boolean;
                 createdAt?: any | null;
                 user?: {
                     __typename?: 'UsersPermissionsUserEntityResponse';
@@ -1773,54 +1402,6 @@ export type GetPostAndSettingsAndContextTextQuery = {
                             confirmed?: boolean | null;
                             username: string;
                         } | null;
-                    } | null;
-                } | null;
-                cover: {
-                    __typename?: 'UploadFileEntityResponse';
-                    data?: {
-                        __typename?: 'UploadFileEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'UploadFile'; alternativeText?: string | null; url: string } | null;
-                    } | null;
-                };
-                categories?: {
-                    __typename?: 'CategoryRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'CategoryEntity';
-                        id?: string | null;
-                        attributes?: {
-                            __typename?: 'Category';
-                            name: string;
-                            slug: string;
-                            cover: {
-                                __typename?: 'UploadFileEntityResponse';
-                                data?: {
-                                    __typename?: 'UploadFileEntity';
-                                    id?: string | null;
-                                    attributes?: {
-                                        __typename?: 'UploadFile';
-                                        alternativeText?: string | null;
-                                        url: string;
-                                    } | null;
-                                } | null;
-                            };
-                        } | null;
-                    }>;
-                } | null;
-                tags?: {
-                    __typename?: 'TagRelationResponseCollection';
-                    data: Array<{
-                        __typename?: 'TagEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Tag'; name: string; slug: string } | null;
-                    }>;
-                } | null;
-                autor?: {
-                    __typename?: 'AutorEntityResponse';
-                    data?: {
-                        __typename?: 'AutorEntity';
-                        id?: string | null;
-                        attributes?: { __typename?: 'Autor'; name: string; slug: string } | null;
                     } | null;
                 } | null;
             } | null;
@@ -1830,39 +1411,25 @@ export type GetPostAndSettingsAndContextTextQuery = {
             pagination: { __typename?: 'Pagination'; total: number; page: number; pageSize: number; pageCount: number };
         };
     } | null;
-    footer?: {
-        __typename?: 'FooterEntityResponse';
-        data?: {
-            __typename?: 'FooterEntity';
-            id?: string | null;
-            attributes?: {
-                __typename?: 'Footer';
-                languagesUsing: string;
-                lastText: string;
-                Author: { __typename?: 'ComponentFooterAuthor'; id: string; description: string; title: string };
-            } | null;
-        } | null;
-    } | null;
 };
 
+export const TagFragmentDoc = gql`
+    fragment tag on Tag {
+        name
+        slug
+    }
+`;
+export const AuthorFragmentDoc = gql`
+    fragment author on Autor {
+        name
+        slug
+    }
+`;
 export const ImageFragmentDoc = gql`
     fragment image on UploadFile {
         alternativeText
         url
     }
-`;
-export const CoverFragmentDoc = gql`
-    fragment cover on Post {
-        cover {
-            data {
-                id
-                attributes {
-                    ...image
-                }
-            }
-        }
-    }
-    ${ImageFragmentDoc}
 `;
 export const CoverCategoryFragmentDoc = gql`
     fragment coverCategory on Category {
@@ -1885,64 +1452,10 @@ export const CategoryFragmentDoc = gql`
     }
     ${CoverCategoryFragmentDoc}
 `;
-export const CategoriesFragmentDoc = gql`
-    fragment categories on Post {
-        categories {
-            data {
-                id
-                attributes {
-                    ...category
-                }
-            }
-        }
-    }
-    ${CategoryFragmentDoc}
-`;
-export const TagFragmentDoc = gql`
-    fragment tag on Tag {
-        name
-        slug
-    }
-`;
-export const TagsFragmentDoc = gql`
-    fragment tags on Post {
-        tags {
-            data {
-                id
-                attributes {
-                    ...tag
-                }
-            }
-        }
-    }
-    ${TagFragmentDoc}
-`;
-export const AuthorFragmentDoc = gql`
-    fragment author on Autor {
-        name
-        slug
-    }
-`;
-export const AuthorPostFragmentDoc = gql`
-    fragment authorPost on Post {
-        autor {
-            data {
-                id
-                attributes {
-                    ...author
-                }
-            }
-        }
-    }
-    ${AuthorFragmentDoc}
-`;
 export const PostFragmentDoc = gql`
     fragment post on Post {
-        slug
         title
-        excerpt
         content
-        allowComments
         createdAt
         user {
             data {
@@ -1954,15 +1467,7 @@ export const PostFragmentDoc = gql`
                 }
             }
         }
-        ...cover
-        ...categories
-        ...tags
-        ...authorPost
     }
-    ${CoverFragmentDoc}
-    ${CategoriesFragmentDoc}
-    ${TagsFragmentDoc}
-    ${AuthorPostFragmentDoc}
 `;
 export const MenuLinkFragmentDoc = gql`
     fragment menuLink on ComponentMenuMenuLink {
@@ -2051,8 +1556,8 @@ export type AuthenticateUserMutationOptions = Apollo.BaseMutationOptions<
     AuthenticateUserMutationVariables
 >;
 export const Create_Post_1Document = gql`
-    mutation CREATE_POST_1($id: ID!, $title: String, $content: String, $except: String, $user: ID) {
-        createPost(data: { title: $title, excerpt: $except, content: $content, user: $user }) {
+    mutation CREATE_POST_1($id: ID!, $title: String, $content: String, $user: ID) {
+        createPost(data: { title: $title, content: $content, user: $user }) {
             data {
                 id
                 attributes {
@@ -2081,7 +1586,6 @@ export type Create_Post_1MutationFn = Apollo.MutationFunction<Create_Post_1Mutat
  *      id: // value for 'id'
  *      title: // value for 'title'
  *      content: // value for 'content'
- *      except: // value for 'except'
  *      user: // value for 'user'
  *   },
  * });
@@ -2140,8 +1644,8 @@ export type Delete_PostMutationHookResult = ReturnType<typeof useDelete_PostMuta
 export type Delete_PostMutationResult = Apollo.MutationResult<Delete_PostMutation>;
 export type Delete_PostMutationOptions = Apollo.BaseMutationOptions<Delete_PostMutation, Delete_PostMutationVariables>;
 export const Update_PostDocument = gql`
-    mutation UPDATE_POST($id: ID!, $title: String, $content: String, $except: String, $user: ID) {
-        updatePost(data: { title: $title, excerpt: $except, content: $content, user: $user }, id: $id) {
+    mutation UPDATE_POST($id: ID!, $title: String, $content: String, $user: ID) {
+        updatePost(data: { title: $title, content: $content, user: $user }, id: $id) {
             data {
                 id
                 attributes {
@@ -2170,7 +1674,6 @@ export type Update_PostMutationFn = Apollo.MutationFunction<Update_PostMutation,
  *      id: // value for 'id'
  *      title: // value for 'title'
  *      content: // value for 'content'
- *      except: // value for 'except'
  *      user: // value for 'user'
  *   },
  * });
@@ -2184,37 +1687,19 @@ export function useUpdate_PostMutation(
 export type Update_PostMutationHookResult = ReturnType<typeof useUpdate_PostMutation>;
 export type Update_PostMutationResult = Apollo.MutationResult<Update_PostMutation>;
 export type Update_PostMutationOptions = Apollo.BaseMutationOptions<Update_PostMutation, Update_PostMutationVariables>;
-export const GetPostAndSettingsAndContextTextDocument = gql`
-    query GetPostAndSettingsAndContextText(
-        $categorySlug: StringFilterInput
-        $postSlug: StringFilterInput
+export const GetPostsDocument = gql`
+    query GetPosts(
         $postSearch: StringFilterInput
-        $authorSlug: StringFilterInput
-        $tagSlug: StringFilterInput
         $sort: [String] = "createdAt:desc"
         $start: Int
         $limit: Int
         $pageSize: Int
         $page: Int
     ) {
-        setting {
-            data {
-                id
-                attributes {
-                    ...settings
-                }
-            }
-        }
         posts(
             pagination: { start: $start, limit: $limit, pageSize: $pageSize, page: $page }
             sort: $sort
-            filters: {
-                slug: $postSlug
-                or: [{ title: $postSearch }, { content: $postSearch }, { excerpt: $postSearch }]
-                categories: { slug: $categorySlug }
-                autor: { slug: $authorSlug }
-                tags: { slug: $tagSlug }
-            }
+            filters: { or: [{ title: $postSearch }, { content: $postSearch }] }
         ) {
             data {
                 id
@@ -2228,43 +1713,24 @@ export const GetPostAndSettingsAndContextTextDocument = gql`
                 }
             }
         }
-        footer {
-            data {
-                id
-                attributes {
-                    Author {
-                        id
-                        description
-                        title
-                    }
-                    languagesUsing
-                    lastText
-                }
-            }
-        }
     }
-    ${SettingsFragmentDoc}
     ${PostFragmentDoc}
     ${PaginationFragmentDoc}
 `;
 
 /**
- * __useGetPostAndSettingsAndContextTextQuery__
+ * __useGetPostsQuery__
  *
- * To run a query within a React component, call `useGetPostAndSettingsAndContextTextQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPostAndSettingsAndContextTextQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetPostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetPostAndSettingsAndContextTextQuery({
+ * const { data, loading, error } = useGetPostsQuery({
  *   variables: {
- *      categorySlug: // value for 'categorySlug'
- *      postSlug: // value for 'postSlug'
  *      postSearch: // value for 'postSearch'
- *      authorSlug: // value for 'authorSlug'
- *      tagSlug: // value for 'tagSlug'
  *      sort: // value for 'sort'
  *      start: // value for 'start'
  *      limit: // value for 'limit'
@@ -2273,37 +1739,14 @@ export const GetPostAndSettingsAndContextTextDocument = gql`
  *   },
  * });
  */
-export function useGetPostAndSettingsAndContextTextQuery(
-    baseOptions?: Apollo.QueryHookOptions<
-        GetPostAndSettingsAndContextTextQuery,
-        GetPostAndSettingsAndContextTextQueryVariables
-    >,
-) {
+export function useGetPostsQuery(baseOptions?: Apollo.QueryHookOptions<GetPostsQuery, GetPostsQueryVariables>) {
     const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useQuery<GetPostAndSettingsAndContextTextQuery, GetPostAndSettingsAndContextTextQueryVariables>(
-        GetPostAndSettingsAndContextTextDocument,
-        options,
-    );
+    return Apollo.useQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, options);
 }
-export function useGetPostAndSettingsAndContextTextLazyQuery(
-    baseOptions?: Apollo.LazyQueryHookOptions<
-        GetPostAndSettingsAndContextTextQuery,
-        GetPostAndSettingsAndContextTextQueryVariables
-    >,
-) {
+export function useGetPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostsQuery, GetPostsQueryVariables>) {
     const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useLazyQuery<GetPostAndSettingsAndContextTextQuery, GetPostAndSettingsAndContextTextQueryVariables>(
-        GetPostAndSettingsAndContextTextDocument,
-        options,
-    );
+    return Apollo.useLazyQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, options);
 }
-export type GetPostAndSettingsAndContextTextQueryHookResult = ReturnType<
-    typeof useGetPostAndSettingsAndContextTextQuery
->;
-export type GetPostAndSettingsAndContextTextLazyQueryHookResult = ReturnType<
-    typeof useGetPostAndSettingsAndContextTextLazyQuery
->;
-export type GetPostAndSettingsAndContextTextQueryResult = Apollo.QueryResult<
-    GetPostAndSettingsAndContextTextQuery,
-    GetPostAndSettingsAndContextTextQueryVariables
->;
+export type GetPostsQueryHookResult = ReturnType<typeof useGetPostsQuery>;
+export type GetPostsLazyQueryHookResult = ReturnType<typeof useGetPostsLazyQuery>;
+export type GetPostsQueryResult = Apollo.QueryResult<GetPostsQuery, GetPostsQueryVariables>;

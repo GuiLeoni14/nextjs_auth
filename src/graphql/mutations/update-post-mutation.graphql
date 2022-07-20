@@ -1,5 +1,5 @@
-mutation UPDATE_POST($id: ID!, $title: String, $content: String, $except: String, $user: ID) {
-    updatePost(data: { title: $title, excerpt: $except, content: $content, user: $user }, id: $id) {
+mutation UPDATE_POST($id: ID!, $title: String, $content: String, $user: ID) {
+    updatePost(data: { title: $title, content: $content, user: $user }, id: $id) {
         data {
             id
             attributes {

@@ -5,16 +5,6 @@ fragment image on UploadFile {
   url
 }
 
-fragment cover on Post {
-  cover {
-    data {
-      id
-      attributes {
-        ...image
-      }
-    }
-  }
-}
 fragment coverCategory on Category {
   cover {
     data {
@@ -42,39 +32,6 @@ fragment category on Category {
   ...coverCategory
 }
 
-fragment tags on Post {
-  tags {
-    data {
-      id
-      attributes {
-        ...tag
-      }
-    }
-  }
-}
-
-fragment authorPost on Post {
-  autor {
-    data {
-      id
-      attributes {
-        ...author
-      }
-    }
-  }
-}
-
-fragment categories on Post {
-  categories {
-    data {
-      id
-      attributes {
-        ...category
-      }
-    }
-  }
-}
-
 fragment menuLink on ComponentMenuMenuLink {
   id
   link
@@ -83,11 +40,8 @@ fragment menuLink on ComponentMenuMenuLink {
 }
 
 fragment post on Post {
-  slug
   title
-  excerpt
   content
-  allowComments
   createdAt
   user {
     data {
@@ -99,10 +53,6 @@ fragment post on Post {
       }
     }
   }
-  ...cover
-  ...categories
-  ...tags
-  ...authorPost
 }
 
 fragment settings on Setting {

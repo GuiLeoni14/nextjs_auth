@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import '../styles/nprogress.css';
+import { ApolloProvider } from '@apollo/client';
+import { client } from '../lib/apollo';
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -31,12 +33,14 @@ export default function App({ Component, pageProps }: AppProps) {
     }, [router]);
     return (
         <SessionProvider session={pageProps.session}>
-            <MyThemeProvider>
-                <GlobalStyle />
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </MyThemeProvider>
+            <ApolloProvider client={client}>
+                <MyThemeProvider>
+                    <GlobalStyle />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </MyThemeProvider>
+            </ApolloProvider>
         </SessionProvider>
     );
 }
