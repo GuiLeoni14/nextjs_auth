@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.nav`
+export const Wrapper = styled.div`
     ${({ theme }) => css`
         display: flex;
         flex-flow: row wrap;

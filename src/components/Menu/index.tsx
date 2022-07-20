@@ -1,4 +1,4 @@
-import { signOut, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import * as Styled from './styles';
@@ -8,10 +8,11 @@ export type MenuProps = {
 };
 
 export const Menu = () => {
-    const [session] = useSession();
+    const { data: session } = useSession();
     const [redirect, setRedirect] = useState('/');
 
     useEffect(() => {
+        //window não está disponível no sever side
         if (typeof window === 'undefined') return;
 
         setRedirect(encodeURI(window.location.pathname));

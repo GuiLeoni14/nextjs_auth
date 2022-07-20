@@ -1,11 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { gqlClient } from '../../../graphql/client';
-import {
-    AuthenticateUserDocument,
-    AuthenticateUserMutation,
-    AuthenticateUserMutationHookResult,
-} from '../../../graphql/generated';
+import { AuthenticateUserDocument, AuthenticateUserMutation } from '../../../graphql/generated';
 
 export default NextAuth({
     jwt: {},
@@ -23,16 +19,15 @@ export default NextAuth({
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: { label: 'Email', type: 'email', placeholder: 'jsmith' },
+                email: { label: 'Email', type: 'email', placeholder: 'jsmith' },
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                console.log(credentials);
-                if (!credentials || !credentials.password || !credentials.username) return null;
+                if (!credentials || !credentials.password || !credentials.email) return null;
                 try {
                     const { login } = await gqlClient.request<AuthenticateUserMutation>(AuthenticateUserDocument, {
-                        identifier: credentials.username,
+                        identifier: credentials.email,
                         password: credentials.password,
                     });
                     const { jwt, user } = login;
@@ -59,6 +54,9 @@ export default NextAuth({
                 name: token.name,
                 email: token.email,
             };
+            if (token) {
+                session.accessToken = token.jwt;
+            }
             return session;
         },
         async jwt({ token, user, account, profile, isNewUser }) {
