@@ -1,68 +1,19 @@
-import { Wrapper } from '../components/Wrapper';
-import { getSession, useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { frontEndRedirect } from '../utils/fornEndRedirect';
+import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
 import { serverSideRedirect } from '../utils/serverSideRedirect';
-import {
-    Delete_PostDocument,
-    Delete_PostMutationResult,
-    GetPostsDocument,
-    GetPostsQuery,
-    PostEntityResponseCollection,
-} from '../graphql/generated';
+import { GetPostsDocument, GetPostsQuery, PostEntityResponseCollection } from '../graphql/generated';
 import { gqlClient } from '../graphql/client';
-import { useEffect, useState } from 'react';
+import { PrivateComponent } from '../components/PrivateComponent';
+import PostsTemplate from '../templates/Posts';
 
 interface IPostsPageProps {
     posts: PostEntityResponseCollection;
 }
 export default function PostsPage({ posts }: IPostsPageProps) {
-    const { data: session, status } = useSession();
-    const [statePosts, setStatesPosts] = useState(posts.data || []);
-    const [deleting, setDeleting] = useState(false);
-    useEffect(() => {
-        if (posts.data) {
-            setStatesPosts(posts.data);
-        }
-    }, [posts]);
-    if (!session && status === 'unauthenticated') {
-        return frontEndRedirect();
-    }
-    const handleDelete = async (id: string) => {
-        setDeleting(true);
-        try {
-            const { data } = await gqlClient.request<Delete_PostMutationResult>(
-                Delete_PostDocument,
-                {
-                    id,
-                },
-                {
-                    Authorization: `Bearer ${session?.accessToken}`,
-                },
-            );
-            setStatesPosts((state) => state.filter((post) => post.id !== id));
-            setDeleting(false);
-        } catch (error) {
-            console.log(error);
-            setDeleting(false);
-        }
-    };
     return (
-        <Wrapper>
-            <h1>POSTS</h1>
-            {statePosts?.map((post) => (
-                <p key={post.id}>
-                    <Link href={`/posts/${post.id}`}>
-                        <a>{post.attributes?.title}</a>
-                    </Link>
-                    |{' '}
-                    <button onClick={() => handleDelete(post.id as string)} disabled={deleting}>
-                        Excluir
-                    </button>
-                </p>
-            ))}
-        </Wrapper>
+        <PrivateComponent>
+            <PostsTemplate posts={posts} />
+        </PrivateComponent>
     );
 }
 

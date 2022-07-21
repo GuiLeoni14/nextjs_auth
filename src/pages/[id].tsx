@@ -1,71 +1,19 @@
-import { useMutation } from '@apollo/client';
 import { GetServerSideProps } from 'next';
-import { getSession, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import { FormPost } from '../components/FormPost';
-import { Wrapper } from '../components/Wrapper';
+import { getSession } from 'next-auth/react';
+import { PrivateComponent } from '../components/PrivateComponent';
 import { gqlClient } from '../graphql/client';
-import {
-    Create_Post_1Document,
-    GetPostsDocument,
-    GetPostsQuery,
-    Get_PostDocument,
-    Get_PostQuery,
-    PostEntityResponse,
-    PostEntityResponseCollection,
-    Update_PostDocument,
-    Update_PostMutationHookResult,
-    Update_PostMutationResult,
-    useCreate_Post_1Mutation,
-} from '../graphql/generated';
-import { frontEndRedirect } from '../utils/fornEndRedirect';
+import { Get_PostDocument, Get_PostQuery, PostEntityResponse } from '../graphql/generated';
+import { UpdatePostTemplate } from '../templates/UpdatePost';
 import { serverSideRedirect } from '../utils/serverSideRedirect';
-
 export interface IPostPageProps {
     post: PostEntityResponse;
 }
-export default function PostPage({ post }: IPostPageProps) {
-    const [createPost] = useCreate_Post_1Mutation();
-    const { data: session, status } = useSession();
-    const [statePost, setStatesPost] = useState(post.data);
-    if ((!session && status === 'unauthenticated') || !statePost) {
-        return frontEndRedirect();
-    }
 
-    const handleSave = async ({ title, id, content }: { id: string; title: string; content: string }) => {
-        try {
-            // const { data } = await gqlClient.request<Update_PostMutationResult>(
-            //     Update_PostDocument,
-            //     {
-            //         title,
-            //         id,
-            //         content,
-            //     },
-            //     {
-            //         Authorization: `Bearer ${session?.accessToken}`,
-            //     },
-            // );
-            await createPost({
-                variables: {
-                    title,
-                    id,
-                    content,
-                },
-                context: {
-                    headers: {
-                        authorization: `Bearer ${session?.accessToken}`,
-                    },
-                },
-            });
-            console.log({ title, id, content });
-        } catch (error) {
-            console.log(error);
-        }
-    };
+export default function PostPage({ post }: IPostPageProps) {
     return (
-        <Wrapper>
-            <FormPost onSave={handleSave} post={statePost} />
-        </Wrapper>
+        <PrivateComponent>
+            <UpdatePostTemplate post={post} />
+        </PrivateComponent>
     );
 }
 
