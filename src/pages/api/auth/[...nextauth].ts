@@ -22,7 +22,7 @@ export default NextAuth({
                 email: { label: 'Email', type: 'email', placeholder: 'jsmith' },
                 password: { label: 'Password', type: 'password' },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 // Add logic here to look up the user from the credentials supplied
                 if (!credentials || !credentials.password || !credentials.email) return null;
                 try {
@@ -49,7 +49,7 @@ export default NextAuth({
         }),
     ],
     callbacks: {
-        async session({ session, user, token }) {
+        async session({ session, token }) {
             session.user = {
                 name: token.name,
                 email: token.email,
@@ -59,7 +59,7 @@ export default NextAuth({
             }
             return session;
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
+        async jwt({ token, user }) {
             const isSingIn = !!user;
             const actualDateInSeconds = Math.floor(Date.now() / 1000);
             const tokenExpirationInSeconds = Math.floor(7 * 24 * 60 * 60); // mesmo tempo do token do strapi

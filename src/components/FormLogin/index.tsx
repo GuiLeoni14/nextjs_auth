@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TextInput } from '../TextInput';
 import * as Styled from './styles';
 import { Button } from '../Button';

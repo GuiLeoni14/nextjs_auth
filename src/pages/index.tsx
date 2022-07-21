@@ -1,10 +1,8 @@
 import { GetServerSideProps } from 'next';
-import { getToken } from 'next-auth/jwt';
 import { useSession } from 'next-auth/react';
-import { parseCookies } from 'nookies';
 import { Wrapper } from '../components/Wrapper';
 export default function Home() {
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
     return (
         <Wrapper>
@@ -13,7 +11,7 @@ export default function Home() {
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     return {
         props: {},
     };

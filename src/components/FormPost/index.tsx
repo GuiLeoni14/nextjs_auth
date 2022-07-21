@@ -1,5 +1,5 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { Post, PostEntity, PostEntityResponse } from '../../graphql/generated';
+import { FormEvent, useState } from 'react';
+import { Post, PostEntity } from '../../graphql/generated';
 import { Button } from '../Button';
 import { TextInput } from '../TextInput';
 

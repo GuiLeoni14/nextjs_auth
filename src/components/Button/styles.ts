@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { ButtonProps } from '.';
 
 export const Button = styled.button<Pick<ButtonProps, 'color'>>`
-    ${({ theme, color }) => css`
-        background: ${theme.colors[color]};
+    ${({ theme }) => css`
+        background: ${theme.colors.deepBlack};
         border: none;
         color: ${theme.colors.white};
         font-size: ${theme.font.sizes.normal};
@@ -17,7 +17,7 @@ export const Button = styled.button<Pick<ButtonProps, 'color'>>`
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 ${theme.spacings.tiny} ${theme.colors[color]};
+            box-shadow: 0 0 ${theme.spacings.tiny} ${theme.colors.deepBlack};
             filter: brightness(110%);
         }
 
