@@ -14,10 +14,10 @@ import {
 import { gqlClient } from '../graphql/client';
 import { useEffect, useState } from 'react';
 
-interface IPostPageProps {
+interface IPostsPageProps {
     posts: PostEntityResponseCollection;
 }
-export default function PostsPage({ posts }: IPostPageProps) {
+export default function PostsPage({ posts }: IPostsPageProps) {
     const { data: session, status } = useSession();
     const [statePosts, setStatesPosts] = useState(posts.data || []);
     const [deleting, setDeleting] = useState(false);

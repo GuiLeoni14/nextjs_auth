@@ -1,5 +1,6 @@
-import { FormEvent, useState } from 'react';
-import { Post, PostEntity } from '../../graphql/generated';
+import { FormEvent, useEffect, useState } from 'react';
+import { Post, PostEntity, PostEntityResponse } from '../../graphql/generated';
+import { Button } from '../Button';
 import { TextInput } from '../TextInput';
 
 export interface IFormPostProps {
@@ -10,27 +11,34 @@ export interface IFormPostProps {
 export const FormPost = ({ post, onSave }: IFormPostProps) => {
     const [newTitle, setNewTitle] = useState(post?.attributes?.title || '');
     const [newContent, setNewContent] = useState(post?.attributes?.content || '');
+    const [isSaving, setIsSaving] = useState(false);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
         if (onSave) {
-            await onSave({ id: post?.id as string, content: newContent, title: newTitle });
+            setIsSaving(true);
+            await onSave({ id: post?.id || '', content: newContent, title: newTitle });
+            setIsSaving(false);
         }
     };
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <TextInput
                 name="post-title"
                 label="Post Title"
                 value={newTitle}
-                onChange={(event) => setNewTitle(event.target.value)}
+                onInputChange={(value) => setNewTitle(value)}
             />
             <TextInput
                 name="post-content"
                 label="Post Content"
                 as="textarea"
                 value={newContent}
-                onChange={(event) => setNewContent(event.target.value)}
+                onInputChange={(value) => setNewContent(value)}
             />
+            <Button type="submit" disabled={isSaving}>
+                {isSaving ? 'Salvando' : 'Salvar'}
+            </Button>
         </form>
     );
 };

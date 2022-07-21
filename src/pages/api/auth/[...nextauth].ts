@@ -77,7 +77,6 @@ export default NextAuth({
                 if (!token.expiration) return {};
                 const expiration = token.expiration as number;
                 if (actualDateInSeconds > expiration) return {};
-                console.log('USER LOGADO', token);
             }
             return token;
         },
