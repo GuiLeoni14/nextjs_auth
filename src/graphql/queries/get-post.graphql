@@ -1,0 +1,10 @@
+query GET_POST($id: ID!) {
+    post(id: $id) {
+        data {
+            id
+            attributes {
+                ...post
+            }
+        }
+    }
+}

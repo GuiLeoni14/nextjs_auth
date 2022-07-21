@@ -1,0 +1,28 @@
+query GetPosts(
+    $postSearch: StringFilterInput
+    $sort: [String] = "createdAt:desc"
+    $start: Int
+    $limit: Int
+    $pageSize: Int
+    $page: Int
+) {
+    posts(
+        pagination: { start: $start, limit: $limit, pageSize: $pageSize, page: $page }
+        sort: $sort
+        filters: {
+            or: [{ title: $postSearch }, { content: $postSearch }]
+        }
+    ) {
+        data {
+            id
+            attributes {
+                ...post
+            }
+        }
+        meta {
+            pagination {
+                ...pagination
+            }
+        }
+    }
+}

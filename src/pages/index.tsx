@@ -1,10 +1,18 @@
-import styled from 'styled-components';
-
-const Title = styled.h1`
-    color: red;
-    font-size: 50px;
-`;
-
+import { GetServerSideProps } from 'next';
+import { useSession } from 'next-auth/react';
+import { Wrapper } from '../components/Wrapper';
 export default function Home() {
-    return <Title>My page</Title>;
+    const { data: session } = useSession();
+
+    return (
+        <Wrapper>
+            <h1>{session?.user?.name}</h1>
+        </Wrapper>
+    );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    return {
+        props: {},
+    };
+};

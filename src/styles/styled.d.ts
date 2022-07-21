@@ -1,15 +1,8 @@
 import 'styled-components';
+import light from './theme/light';
 
+type Theme = typeof light;
 declare module 'styled-components' {
-    export interface DefaultTheme {
-        title: string;
-        colors: {
-            primary: string;
-            second: string;
-            background: string;
-            gray: string;
-            white: string;
-            title: string;
-        };
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    export interface DefaultTheme extends Theme {}
 }
