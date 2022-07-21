@@ -1,5 +1,5 @@
-mutation CREATE_POST_1($id: ID!, $title: String, $content: String, $except: String, $user: ID) {
-    createPost(data: { title: $title, excerpt: $except, content: $content, user: $user }) {
+mutation CREATE_POST_1($title: String, $content: String, $user: ID) {
+    createPost(data: { title: $title, content: $content, user: $user }) {
         data {
             id
             attributes {

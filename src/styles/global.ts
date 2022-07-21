@@ -11,13 +11,6 @@ export default createGlobalStyle`
         text-decoration: none;
         font-family: 'Inter', sans-serif;
     }
-    *:not(svg, path){
-        color: ${({ theme: { colors } }) => colors.gray};
-    }
-    body{
-        background-color: ${({ theme: { colors } }) => colors.background};
-        color: ${(props) => props.theme.colors.title};
-    }
     html{
         font-size: 62.5%;
     }
